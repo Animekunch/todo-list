@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./App.css";
 import addicon from "./add.svg"
 
+// <FontAwesomeIcon icon="fa-solid fa-trash" bounce size="xs" />  <FontAwesomeIcon icon="fa-solid fa-pen-to-square" />
+// add <FontAwesomeIcon icon="fa-solid fa-plus" />
 let nextId = 0;
 
 function App() {
@@ -13,13 +15,15 @@ function App() {
       ...storms,
       { id: nextId++, item: item}
     ])
+    setItem("")   //clears textbox after submit
+    //e.preventDefault()  
   }
 
   return (
     <>
       <div className="container">
       <h1>Todo List</h1>
-        <div className="text-box">
+        <form className="text-box">
           <input
             placeholder="Add to list of things to do"
             value={item}
@@ -31,13 +35,13 @@ function App() {
           onClick={handleclick}
         />
            
-        </div>
+        </form>
         <div className="List">
           <h2>List of Todos</h2>
           <div className="todos">
             <ol type="1">
               {storms.map(storm => (
-                <li key={storm.id}>{storm.item}{' '}</li>
+                <li key={storm.id}>{storm.item}</li>
               ))}
             </ol>
           </div>
