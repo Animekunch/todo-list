@@ -18,3 +18,4 @@ const Content = ({ items, handleCheck, handleDelete }) => {
 };
 
 export default Content;
+
