@@ -4,7 +4,7 @@ import React from "react";
 const SearchItems = ({search, setSearch}) => {
   return (
     <form className="searchForm" onSubmit={(e) => e.preventDefault()}>
-      <label htmlFor="search">Search</label>
+      <label htmlFor="search">Search List</label>
       <input
         id="search"
         type="text"
