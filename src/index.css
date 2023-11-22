@@ -129,12 +129,12 @@ ol li::before {
 }
 
 .addForm {
-  width: 96%;
+  width: 86%;
   display: flex;
   justify-content: flex-start;
   margin: 0.5rem 0 0;
   padding: 0 0.5rem 0.25rem;
-  border-bottom: 1px solid #dacece;
+  /* border-bottom: 1px solid #dacece; */
 }
 
 .addForm label {
@@ -171,12 +171,12 @@ button:hover {
 }
 
 .searchForm {
-  width: 96%;
+  width: 56%;
   display: flex;
   justify-content: flex-start;
   margin: 0.25rem 0 0;
   padding: 0 0.5rem 0.25rem;
-  border-bottom: 1px solid #dedddd;
+  border-bottom: 1px solid transparent;
 }
 
 .searchForm label {
