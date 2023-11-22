@@ -11,7 +11,7 @@ export const LineItem = ({item, handleCheck, handleDelete}) => {
           checked={item.checked}
         />
         <label
-          style={item.checked ? { textDecoration: "dotted" } : null}
+          style={item.checked ? { textDecoration: "underline" } : null}
           onDoubleClick={() => handleCheck(item.id)}
         >
           {item.item}
