@@ -8,13 +8,13 @@ const AddItem = ({ newItem, setNewItem, handleSubmit }) => {
 
   return (
     <form className="addForm" onSubmit={handleSubmit}>
-      <label htmlFor="addItem">Make todo</label>
+      <label htmlFor="addItem">Make todos</label>
       <input
         autoFocus
         ref={inputRef}
         id="addItem"
         type="text"
-        placeholder="Make Todo"
+        placeholder="Make Todos"
         required
         value={newItem}
         onChange={(e) => setNewItem(e.target.value)}
