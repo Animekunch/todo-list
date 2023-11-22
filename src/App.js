@@ -1,43 +1,79 @@
+import Header from "./Header";
+import SearchItems from "./SearchItems";
+import AddItem from "./AddItem";
+import Content from "./Content";
+import Footer from "./Footer";
 import React, { useState } from "react";
-import "./App.css";
-import addicon from "./add.svg";
-
-let nextId = 0;
 
 function App() {
-  const [item, setItem] = useState("");
-  const [storms, setStorms] = useState([]);
+  // setitems array to save from local storage
+  const [items, setItems] = useState(
+    JSON.parse(localStorage.getItem("shoppinglist"))
+  );
+  const [newItem, setNewItem] = useState("");
+  
+  const [search, setSearch] = useState('');
+  const setAndSaveItems = (newItems) => {
+    // then now set it to setItems
+    setItems(newItems);
+    //save to local storage so during refresh it will not go back to default
+    localStorage.setItem("shoppinglist", JSON.stringify(newItems));
+  };
 
-  function handleclick() {
-    setStorms([...storms, { id: nextId++, item: item }]);
-    setItem(""); //clears textbox after submit
-    //e.preventDefault()
-  }
+  const addItem = (item) => {
+    //check the index of the last element which is -1
+    const id = items.length ? items[items.length - 1].id + 1 : 1;
+    //new item
+    const myNewItem = { id, checked: false, item };
+    const listItems = [...items, myNewItem];
+    setAndSaveItems(listItems);
+  };
+
+  const handleCheck = (id) => {
+    // reassign state is not a good idea ccreate a new array is better.
+    const listItems = items.map((item) =>
+      item.id === id ? { ...item, checked: !item.checked } : item
+    );
+    setAndSaveItems(listItems);
+  };
+
+  const handleDelete = (id) => {
+    const listItems = items.filter((item) => item.id !== id);
+    setAndSaveItems(listItems);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!newItem) return;
+    //addItem
+    addItem(newItem);
+    setNewItem("");
+  };
 
   return (
-    <>
-      <div className="container">
-        <h1>Todo List</h1>
-        <form className="text-box">
-          <input
-            placeholder="Add to list of things to do"
-            value={item}
-            onChange={(e) => setItem(e.target.value)}
-          />{" "}
-          <img src={addicon} alt="search" onClick={handleclick} />
-        </form>
-        <div className="List">
-          <h2>List of Todos</h2>
-          <div className="todos">
-            <ol type="1">
-              {storms.map((storm) => (
-                <li key={storm.id}>{storm.item}</li>
-              ))}
-            </ol>
-          </div>
-        </div>
-      </div>
-    </>
+    <div className="App">
+      <Header title="Todo List App"
+      
+      />
+      
+      <AddItem
+        newItem={newItem}
+        setNewItem={setNewItem}
+        handleSubmit={handleSubmit}
+      />
+      
+      <SearchItems 
+      search={search}
+      setSearch={setSearch}
+      />
+
+      <Content
+        items={items && items.filter(item => ((item.item).toLowerCase()).includes(search.toLocaleLowerCase()))}
+        handleCheck={handleCheck}
+        handleDelete={handleDelete}
+      />
+      <Footer length={ items.length} />
+    </div>
   );
 }
 

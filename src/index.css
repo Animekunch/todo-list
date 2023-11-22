@@ -1,13 +1,194 @@
-body {
+ @import url("https://fonts.googleapis.com/css?family=Roboto+Slab:100,300,400,700");
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i");
+
+@font-face {
+  font-family: blackops;
+  src: url(BlackOpsOne-Regular.ttf);
+}
+
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 22px;
+}
+
+body {
+  background: linear-gradient(rgb(12, 12, 12), rgb(136, 43, 130));
+  min-height: 100vh;
+  font-family: 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  margin: auto;
 }
+
+.header {
+  place-items: center;
+  align-items: center;
+  display: flex;
+  padding: 0 0.15em;
+  font-family: blackops;
+  margin-left: 20%;
+  font-size: 30px;
+  letter-spacing: 0.9px;
+  background: linear-gradient(40deg,
+      rgb(133, 52, 126) 0%,
+      rgba(244, 180, 249, 0) 99%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.footer {
+  width: 100%;
+  padding: 0.15em;
+  background-color: rgb(39, 24, 39);
+  color: rgb(255, 240, 250);
+  display: grid;
+  place-content: center;
+}
+
+ol {
+  width: 100%;
+  list-style: none;
+  padding: 0 0.25rem 0.25rem;
+}
+
+ol li::before {
+  content: "\200B";
+}
+
+.item {
+  display:flex;
+  justify-content:flex-start;
+  align-items: center;
+  padding: 0.5rem 0 0.5rem 0.5rem;
+  margin: 0.25rem 0;
+  background-color: #562a56;
+}
+
+.item:first-child {
+  margin: 0;
+}
+
+.item input[type="checkbox"] {
+  text-align: center;
+  width: 2.5rem;
+  width: 28px;
+  min-width: 28px;
+  height: 48px;
+  min-height: 48px;
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
+.item input[type="checkbox"]:focus+label {
+  text-decoration :underline;
+}
+.item>label {
+  font-size: 0.75rem;
+  flex-grow: 1;
+}
+
+.item svg {
+  width: 48px;
+  min-width: 48px;
+  height: 26px;
+  font-size: 1rem;
+  color: rgb(146, 46, 146);
+  cursor: pointer;
+}
+
+.item svg:focus,
+.item svg:hover {
+  color: rgb(5, 104, 104);
+  outline: none;
+}
+
+.addForm {
+  width: 96%;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0.5rem 0 0;
+  padding: 0 0.5rem 0.25rem;
+  border-bottom: 1px solid #dacece;
+}
+
+.addForm label {
+  position: absolute;
+  left: -99999px; /* way off screen*/
+}
+
+.addForm input[type="text"] {
+  flex-grow: 1;
+  max-width: calc(100% - 50px);
+  min-height: 48px;
+  font-size: 1rem;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+  margin-right: 0.25rem;
+  outline: none;
+}
+
+button {
+  height: 48px;
+  min-width: 48px;
+  border-radius: 0.25rem;
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: rgb(180, 175, 175);
+  color: rgb(160, 67, 160);
+  cursor: pointer;
+}
+button:focus,
+button:hover {
+  color: white;
+  background-color: rgb(50, 205, 161);
+  outline: none;
+}
+
+.searchForm {
+  width: 96%;
+  display: flex;
+  justify-content: flex-start;
+  margin: 0.25rem 0 0;
+  padding: 0 0.5rem 0.25rem;
+  border-bottom: 1px solid #eee;
+}
+
+.searchForm label {
+  position: absolute;
+  left: -99999px;
+}
+
+.searchForm input[type='text'] {
+  flex-grow: 0.5;
+  max-width: 100%;
+  padding: 0.15rem;
+  border-radius: 0.25rem;
+  outline: none;
+}
+
