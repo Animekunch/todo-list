@@ -3,17 +3,15 @@ import SearchItems from "./SearchItems";
 import AddItem from "./AddItem";
 import Content from "./Content";
 import Footer from "./Footer";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 function App() {
   // setitems array to save from local storage
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(
+    JSON.parse(localStorage.getItem("shoppinglist")) || []
+  );
   const [newItem, setNewItem] = useState("");
   const [search, setSearch] = useState("");
-
-  useEffect(() => {
-    setItems(JSON.parse(localStorage.getItem("shoppinglist")));
-  }, []);
 
   const setAndSaveItems = (newItems) => {
     // then now set it to setItems
