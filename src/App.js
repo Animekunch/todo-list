@@ -3,16 +3,18 @@ import SearchItems from "./SearchItems";
 import AddItem from "./AddItem";
 import Content from "./Content";
 import Footer from "./Footer";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function App() {
   // setitems array to save from local storage
-  const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem("shoppinglist"))
-  );
+  const [items, setItems] = useState([]);
   const [newItem, setNewItem] = useState("");
-  
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    setItems(JSON.parse(localStorage.getItem("shoppinglist")));
+  }, []);
+
   const setAndSaveItems = (newItems) => {
     // then now set it to setItems
     setItems(newItems);
@@ -52,27 +54,27 @@ function App() {
 
   return (
     <div className="App">
-      <Header title="Todo List App"
-      
-      />
-      
+      <Header title="Todo List App" />
+
       <AddItem
         newItem={newItem}
         setNewItem={setNewItem}
         handleSubmit={handleSubmit}
       />
-      
-      <SearchItems 
-      search={search}
-      setSearch={setSearch}
-      />
+
+      <SearchItems search={search} setSearch={setSearch} />
 
       <Content
-        items={items && items.filter(item => ((item.item).toLowerCase()).includes(search.toLocaleLowerCase()))}
+        items={
+          items &&
+          items.filter((item) =>
+            item.item.toLowerCase().includes(search.toLocaleLowerCase())
+          )
+        }
         handleCheck={handleCheck}
         handleDelete={handleDelete}
       />
-      <Footer length={ items.length} />
+      <Footer length={items.length} />
     </div>
   );
 }
