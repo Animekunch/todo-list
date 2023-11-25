@@ -8,7 +8,7 @@ import React, { useState, useEffect } from "react";
 function App() {
   // setitems array to save from local storage
   const [items, setItems] = useState(
-    JSON.parse(localStorage.getItem("shoppinglist")),
+    JSON.parse(localStorage.getItem("shoppinglist")) ||
     []
   );
   const [newItem, setNewItem] = useState("");
